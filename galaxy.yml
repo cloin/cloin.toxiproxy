@@ -1,0 +1,15 @@
+namespace: cloin
+name: toxiproxy
+version: 0.1.0
+readme: README.md
+authors:
+  - Colin McNaughton <@cloin>
+description: Basic Toxiproxy collection
+license_file: 'LICENSE'
+tags:
+  - infrastructure
+dependencies: {}
+repository: https://github.com/cloin/cloin.toxiproxy
+documentation: https://github.com/cloin/cloin.toxiproxy/tree/main/docs
+issues: https://github.com/cloin/cloin.toxiproxy/issues
+build_ignore: []
