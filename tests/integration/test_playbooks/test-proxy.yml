@@ -1,0 +1,54 @@
+---
+- name: Comprehensive Toxiproxy Testing
+  hosts: localhost
+  gather_facts: no
+  tasks:
+    - name: Create a Toxiproxy proxy
+      proxy:
+        url: "http://localhost:8474"
+        name: "test_proxy"
+        listen: "localhost:18080"
+        upstream: "localhost:8080"
+        state: "present"
+
+    - name: Disable the Toxiproxy proxy
+      proxy:
+        url: "http://localhost:8474"
+        name: "test_proxy"
+        enabled: false
+        state: "present"
+
+    - name: Enable the Toxiproxy proxy
+      proxy:
+        url: "http://localhost:8474"
+        name: "test_proxy"
+        enabled: true
+        state: "present"
+
+    - name: Create a Toxiproxy toxic
+      toxic:
+        url: "http://localhost:8474"
+        proxy_name: "test_proxy"
+        toxic_name: "test_toxic"
+        toxic_type: "latency"
+        attributes:
+          latency: 1000
+          jitter: 500
+        state: "present"
+
+    - name: Delete the Toxiproxy toxic
+      toxic:
+        url: "http://localhost:8474"
+        proxy_name: "test_proxy"
+        toxic_name: "test_toxic"
+        toxic_type: "latency"
+        attributes:
+          latency: 1000
+          jitter: 500
+        state: "absent"
+
+    - name: Delete the Toxiproxy proxy
+      proxy:
+        url: "http://localhost:8474"
+        name: "test_proxy"
+        state: "absent"

@@ -22,7 +22,7 @@ def create_toxic(module, url, proxy_name, toxic_type, toxic_name, attributes):
         "attributes": attributes
     }
     response = requests.post(f"{url}/proxies/{proxy_name}/toxics", json=data)
-    if response.status_code == 201:
+    if response.status_code == 200:
         return True, response.json()
     module.fail_json(msg="Failed to create toxic", details=response.text)
 
